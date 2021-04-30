@@ -25,7 +25,7 @@ const SIGNIN_MUTATION = gql`
 
 const SignIn = () => {
     
-    const { inputs, handleCHange, resetForm } = useForm({
+    const { inputs, handleChange, resetForm } = useForm({
         email: '',
         password: '',
     });
@@ -33,6 +33,10 @@ const SignIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await signin();
+        console.log(`res`, res)
+        resetForm()
+
+
     }
     const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
         variables: inputs,
@@ -41,15 +45,19 @@ const SignIn = () => {
     })
 
     const error = data?.authenticateUserWithPassword.__typename === 'UserAuthenticationWithPasswordFailure' ? data?.authenticateUserWithPassword : undefined;
+    console.log(`data`, data)
     return (
         <Form method='post' onSubmit={handleSubmit}>
-            <h>Sign Into your account</h>
+            <h2>Sign Into your account</h2>
             <DisplayError error={error} />
             <fieldset>
                 <label htmlFor="email">
                     Email
-                    <input type="email" name="email" placeholder="Your email address" autocomplete="email" />
-                    <input type="password" name="password" placeholder="Password" autocomplete="password" />
+                    <input type="email" name="email" placeholder="Your email address" autoComplete="email" value={inputs.email} onChange={handleChange} required/>
+                </label>
+                <label htmlFor="password">
+                    Password
+                    <input type="password" name="password" placeholder="Password" autoComplete="password" value={ inputs.password } onChange={ handleChange } required/>
                 </label>
                 <button type="submit">Submit</button>
             </fieldset>
