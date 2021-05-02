@@ -36,7 +36,6 @@ const Reset = ({token}) => {
 
     const successfullError = data?.redeemUserPasswordResetToken?.code ? data.redeemUserPasswordResetToken : undefined;
 
-    console.log(`data`, data)
     return (
         <Form method='post' onSubmit={handleSubmit}>
             <h2>Reset Your Password</h2>

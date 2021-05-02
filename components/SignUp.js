@@ -34,10 +34,6 @@ const SignUp = () => {
     const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
         variables: inputs,
     })
-
-    // const error = data?.authenticateUserWithPassword.__typename === 'UserAuthenticationWithPasswordFailure' ? data?.authenticateUserWithPassword : undefined;
-
-    console.log(`data`, data)
     
     return (
         <Form method='post' onSubmit={handleSubmit}>

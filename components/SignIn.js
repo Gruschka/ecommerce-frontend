@@ -32,11 +32,8 @@ const SignIn = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await signin();
-        console.log(`res`, res)
-        resetForm()
-
-
+        await signin();
+        resetForm();
     }
     const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
         variables: inputs,
@@ -45,7 +42,6 @@ const SignIn = () => {
     })
 
     const error = data?.authenticateUserWithPassword.__typename === 'UserAuthenticationWithPasswordFailure' ? data?.authenticateUserWithPassword : undefined;
-    console.log(`data`, data)
     return (
         <Form method='post' onSubmit={handleSubmit}>
             <h2>Sign Into your account</h2>

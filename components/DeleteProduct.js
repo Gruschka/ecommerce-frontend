@@ -11,8 +11,6 @@ const DELETE_PRODUCT_MUTATION = gql`
 `;
 
 function update(cache, payload){
-    console.log(`payload`, payload)
-    console.log(`cache`, cache)
     cache.evict(cache.identify(payload.data.deleteProduct))
 }
 
@@ -25,7 +23,6 @@ const DeleteProduct = ({ id, children }) => {
 
     const onClick = () => {
         if(confirm('Are you sure you want to delete this Item?')){
-            console.log(`delete`)
             deleteProduct(id).catch(err => alert(err.message));
         }
     }

@@ -28,9 +28,6 @@ const RequestReset = () => {
         variables: inputs,
     })
 
-    // const error = data?.authenticateUserWithPassword.__typename === 'UserAuthenticationWithPasswordFailure' ? data?.authenticateUserWithPassword : undefined;
-
-    console.log(`data`, data)
     return (
         <Form method='post' onSubmit={handleSubmit}>
             <h2>Request a Password</h2>
